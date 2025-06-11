@@ -13,6 +13,14 @@ class JewelryProduct(models.Model):
 
     def __str__(self):
         return f"{self.model_number} - {self.description}"
+    
+class JewelryProductImage(models.Model):
+    jewelry_product = models.ForeignKey(JewelryProduct, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='jewelry_photos/')
+    alt_text = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return f"Image for {self.jewelry_product.model_number}"
 
 class Diamond(models.Model):
     jewelry_product = models.ForeignKey(JewelryProduct, on_delete=models.CASCADE, related_name='diamonds')

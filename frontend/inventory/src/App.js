@@ -1,22 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import ExcelUploadButton from './Components/ExcelUploadButton';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Excel Upload</h1>
-        <div>
-          <ExcelUploadButton />
-          <p>
-            Upload your Excel file to manage your inventory efficiently.
-          </p>
-        </div>
-
-      </header>
-    </div>
+    <Router>
+      <AppRoutes />
+    </Router>
   );
 }
 

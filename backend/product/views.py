@@ -4,7 +4,14 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework import status
 import pandas as pd
 from .models import JewelryProduct, Diamond, ColoredStone
+from rest_framework import generics
+from .models import JewelryProduct
+from .serializers import ProductCardSerializer
+from .filters import JewelryProductFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
+
+"""API view to handle Excel file uploads and process jewelry data."""
 class ExcelUploadAPIView(APIView):
     parser_classes = [MultiPartParser]
 
@@ -66,3 +73,11 @@ class ExcelUploadAPIView(APIView):
 
         return Response({"message": "Data imported successfully!"}, status=status.HTTP_201_CREATED)
 
+
+"""API view to list jewelry products with filtering capabilities."""
+
+class ProductCardListAPIView(generics.ListAPIView):
+    queryset = JewelryProduct.objects.all()
+    serializer_class = ProductCardSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = JewelryProductFilter

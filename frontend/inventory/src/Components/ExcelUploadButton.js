@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../config';
-
+import Button from '@mui/material/Button';
+import UploadIcon from '@mui/icons-material/Upload'; // Optional: Add an icon
+import Stack from '@mui/material/Stack';
 
 export default function ExcelUploadButton() {
     const handleUpload = async (e) => {
@@ -19,9 +21,24 @@ export default function ExcelUploadButton() {
     };
 
     return (
-    <div>
-      <h2>Upload Jewelry Excel</h2>
-      <input type="file" accept=".xlsx,.xls" onChange={handleUpload} />
-    </div>
+        <Stack direction="row" spacing={2}>
+            <input
+                accept=".xlsx,.xls"
+                id="upload-excel"
+                type="file"
+                style={{ display: 'none' }}
+                onChange={handleUpload}
+            />
+            <label htmlFor="upload-excel">
+                <Button
+                    variant="contained"
+                    component="span"
+                    color="primary"
+                    startIcon={<UploadIcon />}
+                >
+                    Upload Excel
+                </Button>
+            </label>
+        </Stack>
     );
 }

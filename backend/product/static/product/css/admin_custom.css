@@ -1,0 +1,16 @@
+:root {
+    --primary: #8B008B; /* Dark magenta */
+    --secondary: #f4f4f4;
+}
+
+body {
+    background-color: var(--secondary);
+}
+
+#header {
+    background-color: var(--primary);
+}
+
+#header h1, #user-tools {
+    color: white;
+}
