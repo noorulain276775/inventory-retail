@@ -6,8 +6,8 @@ const ProductFilters = ({ onFilter }) => {
     model_number: '',
     gold_karat: '',
     gold_color: '',
-    min_weight: '',
-    max_weight: '',
+    total_usd_min: '',
+    total_usd_max: '',
   });
 
   const handleChange = (e) => {
@@ -22,7 +22,7 @@ const ProductFilters = ({ onFilter }) => {
   return (
     <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
       <Box component="form" onSubmit={handleSubmit}>
-        <Grid container spacing={2} alignItems="center">
+        <Grid container spacing={2} alignItems="center" justifyContent={"center"}>
           <Grid item xs={12} sm={6} md={3}>
             <TextField
               fullWidth
@@ -59,9 +59,9 @@ const ProductFilters = ({ onFilter }) => {
           <Grid item xs={12} sm={6} md={3}>
             <TextField
               fullWidth
-              name="min_weight"
-              label="Min Weight (g)"
-              value={filters.min_weight}
+              name="total_usd_min"
+              label="Min Price (usd)"
+              value={filters.total_usd_min}
               onChange={handleChange}
               variant="outlined"
               size="small"
@@ -71,15 +71,16 @@ const ProductFilters = ({ onFilter }) => {
           <Grid item xs={12} sm={6} md={3}>
             <TextField
               fullWidth
-              name="max_weight"
-              label="Max Weight (g)"
-              value={filters.max_weight}
+              name="total_usd_max"
+              label="Max Price (usd)"
+              value={filters.total_usd_max}
               onChange={handleChange}
               variant="outlined"
               size="small"
               type="number"
             />
           </Grid>
+
           <Grid item xs={12} md={3}>
             <Button
               variant="contained"

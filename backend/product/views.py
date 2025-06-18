@@ -6,7 +6,7 @@ import pandas as pd
 from .models import JewelryProduct, Diamond, ColoredStone
 from rest_framework import generics
 from .models import JewelryProduct
-from .serializers import ProductCardSerializer
+from .serializers import ProductCardSerializer, JewelryProductSerializer
 from .filters import JewelryProductFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -81,3 +81,9 @@ class ProductCardListAPIView(generics.ListAPIView):
     serializer_class = ProductCardSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = JewelryProductFilter
+
+
+class JewelryProductDetailView(generics.RetrieveAPIView):
+    queryset = JewelryProduct.objects.all()
+    serializer_class = JewelryProductSerializer
+    lookup_field = 'id'

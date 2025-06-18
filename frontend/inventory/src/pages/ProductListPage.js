@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductCards } from '../redux/productsSlice.js';
 
 import ProductCard from '../Components/ProductCard.js';
-import { Grid, Typography, Container, Box, CircularProgress, Paper } from '@mui/material';
-import ExcelUploadButton from '../Components/ExcelUploadButton.js';
+import { Grid, Typography, Container, Box, CircularProgress } from '@mui/material';
 import ProductFilters from '../Components/ProductFilters.js';
 import DiamondIcon from '@mui/icons-material/Diamond';
 
@@ -42,16 +41,16 @@ const ProductListPage = () => {
             Discover Timeless Jewelry
           </Typography>
           <Typography variant="subtitle1" sx={{ maxWidth: 600, mx: 'auto', color: '#555' }}>
-            Browse our collection of luxury jewelry. Use the filters to find the perfect piece or upload products via Excel.
+            Browse our collection of luxury jewelry. Use the filters to find the perfect piece for you.
           </Typography>
         </Container>
       </Box>
 
       {/* Main Content */}
       <Container sx={{ mt: 5 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 3 }}>
+        {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 3 }}>
           <ExcelUploadButton />
-        </Box>
+        </Box> */}
 
         <ProductFilters onFilter={(filters) => dispatch(fetchProductCards(filters))} />
 
@@ -68,7 +67,8 @@ const ProductListPage = () => {
             No products found.
           </Typography>
         ) : (
-          <Grid container spacing={4} justifyContent="flex-start" mt={1}>
+          <Grid container spacing={4} justifyContent="center
+          " mt={1}>
             {items.map((product) => (
               <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
                 <ProductCard product={product} />

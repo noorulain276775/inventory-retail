@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   const altText = product?.images?.[0]?.alt_text || product.model_number || 'Jewelry Product';
 
   return (
-    <Link to={`/product/${product.model_number}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
       <Card
         sx={{
           width: 300,

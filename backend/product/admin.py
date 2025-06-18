@@ -4,6 +4,7 @@ from django.urls import path
 from django.shortcuts import render, redirect
 import requests
 from django.contrib.admin import AdminSite
+from django.utils.html import format_html
 
 class CustomAdminSite(AdminSite):
     site_header = "Jewelry Inventory Admin"
@@ -16,13 +17,17 @@ class CustomAdminSite(AdminSite):
         return context
 
 
-
 class JewelryProductImageInline(admin.TabularInline):
     model = JewelryProductImage
     extra = 1
-    fields = ('image', 'alt_text',)
-    readonly_fields = ()
-    show_change_link = False
+    fields = ('image', 'image_preview', 'alt_text',)
+    readonly_fields = ('image_preview',)
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="width: 60px; height: auto;" />', obj.image.url)
+        return "-"
+    image_preview.short_description = 'Preview'
 
 class DiamondInline(admin.TabularInline):
     model = Diamond
@@ -53,7 +58,7 @@ class JewelryProductAdmin(admin.ModelAdmin):
         if request.method == 'POST' and request.FILES.get('excel_file'):
             file = request.FILES['excel_file']
             response = requests.post(
-                'http://127.0.0.1:8000/api/product/upload-excel/upload-excel/',
+                'http://127.0.0.1:8000/api/product/upload-excel/',
                 files={'excel_file': file}
             )
             if response.status_code == 201:
